@@ -1,0 +1,12 @@
+extends base
+
+block content 
+
+
+  .row
+    form.col-md-6.form-group.m-3.mt-5.b-2.border.border-primary.client-info-form(action='')
+      h2.text-center.form-text please start with your name to continue and always allow...
+      label.mb-0.m-3.form__label(for='name') Name:
+      input#name.form-control.m-3(type='text' name='name' placeholder='example' required='')
+      button.m-3.btn.btn-danger.btn-start Start
+
