@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const compression = require('compression');
 // const exp = require('constants');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -57,6 +58,8 @@ app.use(
     saveUninitialized: false,
   }),
 );
+
+app.use(compression());
 
 // test Middleware
 

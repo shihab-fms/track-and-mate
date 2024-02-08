@@ -17,8 +17,8 @@ if (clientForm) {
         long = position.coords.longitude;
 
         // Now you can use lat and long here or call a function passing lat and long as arguments
-        console.log('Latitude:', lat);
-        console.log('Longitude:', long);
+        // console.log('Latitude:', lat);
+        // console.log('Longitude:', long);
 
         //pushing lacation
         location.push({
@@ -33,7 +33,7 @@ if (clientForm) {
         try {
           const res = await axios({
             method: 'POST',
-            url: `http://127.0.0.1:3001/api/v1/clients/create`,
+            url: `/api/v1/clients/create`,
             data: {
               name,
               location,
@@ -41,10 +41,10 @@ if (clientForm) {
           });
 
           if (res.data.status === 'success') {
-            console.log('Ok');
+            // console.log('Ok');
           }
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       });
     }
