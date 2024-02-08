@@ -5460,8 +5460,8 @@ if (clientForm) {
                 long = position.coords.longitude;
 
                 // Now you can use lat and long here or call a function passing lat and long as arguments
-                console.log('Latitude:', lat);
-                console.log('Longitude:', long);
+                // console.log('Latitude:', lat);
+                // console.log('Longitude:', long);
 
                 //pushing lacation
                 location.push({
@@ -5473,32 +5473,31 @@ if (clientForm) {
                 });
 
                 //updating api
-                _context.prev = 5;
-                _context.next = 8;
+                _context.prev = 3;
+                _context.next = 6;
                 return (0, _axios.default)({
                   method: 'POST',
-                  url: "http://127.0.0.1:3001/api/v1/clients/create",
+                  url: "/api/v1/clients/create",
                   data: {
                     name: name,
                     location: location
                   }
                 });
-              case 8:
+              case 6:
                 res = _context.sent;
                 if (res.data.status === 'success') {
-                  console.log('Ok');
+                  // console.log('Ok');
                 }
-                _context.next = 15;
+                _context.next = 12;
                 break;
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](3);
               case 12:
-                _context.prev = 12;
-                _context.t0 = _context["catch"](5);
-                console.log(_context.t0);
-              case 15:
               case "end":
                 return _context.stop();
             }
-          }, _callee, null, [[5, 12]]);
+          }, _callee, null, [[3, 10]]);
         }));
         return function (_x) {
           return _ref.apply(this, arguments);
@@ -5532,7 +5531,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3117" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1741" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
