@@ -5442,13 +5442,21 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var clientForm = document.querySelector('.client-info-form');
+var retrunClientForm = document.querySelector('.client-info-return');
 if (clientForm) {
+  var client = JSON.parse(localStorage.getItem('clientData'));
+  if (client) {
+    window.setTimeout(function () {
+      var time = new Date(Date.now());
+      if (!(time.getTime() - 60 * 5 * 1000 > new Date(client.location[0].coords.resultTime).getTime())) return location.assign('/thanks');
+    }, 500);
+  }
   var btnsumbit = document.querySelector('.btn-start');
   btnsumbit.addEventListener('click', function (e) {
     e.preventDefault();
     var name = document.querySelector('#name').value;
     var lat, long;
-    var location = [];
+    var locations = [];
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( /*#__PURE__*/function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(position) {
@@ -5464,7 +5472,7 @@ if (clientForm) {
                 // console.log('Longitude:', long);
 
                 //pushing lacation
-                location.push({
+                locations.push({
                   coords: {
                     resultTime: new Date(Date.now()),
                     lat: lat,
@@ -5480,13 +5488,18 @@ if (clientForm) {
                   url: "/api/v1/clients/create",
                   data: {
                     name: name,
-                    location: location
+                    location: locations
                   }
                 });
               case 6:
                 res = _context.sent;
                 if (res.data.status === 'success') {
-                  // console.log('Ok');
+                  console.log('ok');
+                  localStorage.clear();
+                  localStorage.setItem('clientData', JSON.stringify(res.data.data));
+                  window.setTimeout(function () {
+                    location.assign('/thanks');
+                  }, 1500);
                 }
                 _context.next = 12;
                 break;
@@ -5505,6 +5518,12 @@ if (clientForm) {
       }());
     }
   });
+}
+if (retrunClientForm) {
+  var _client = JSON.parse(localStorage.getItem('clientData'));
+  var messagebox = document.querySelector('.message');
+  console.log(_client.name);
+  messagebox.textContent = "Welcome...! You have been caughten ".concat(_client.name);
 }
 },{"axios":"../../node_modules/axios/index.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -5531,7 +5550,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1741" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7344" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

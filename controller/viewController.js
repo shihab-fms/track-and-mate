@@ -6,3 +6,9 @@ exports.regClient = (req, res, next) => {
     title: 'client',
   });
 };
+
+exports.returnClient = (req, res, next) => {
+  res.status(200).render('thanks', {
+    title: '❌thanks',
+  });
+};
