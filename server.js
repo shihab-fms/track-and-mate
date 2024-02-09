@@ -5,9 +5,9 @@ const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATA_BASE_USERNAME.replace(
+const DB = process.env.DATABASE.replace(
   '<password>',
-  process.env.DATA_BASE_PASSWORD,
+  process.env.DATABASE_PASSWORD,
 );
 
 mongoose.set('strictQuery', false);
